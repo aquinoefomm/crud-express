@@ -6,7 +6,7 @@ const db = new pg.Client({
     user: "postgres",
     host: "localhost",
     database: "it-career",
-    password: "you-password",
+    password: "Bl@cK200",
     port: 5432,
 });
 
@@ -22,7 +22,6 @@ db.query("SELECT * FROM college_courses", (err, res) => {
     } else {
         courses = res.rows;
     }
-
 });
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -67,7 +66,7 @@ app.post('/editar', async (req, res) => {
     let nomed = req.body.nomed;
     let cargad = req.body.cargad;
     let professord = req.body.professord;
-  await res.render('edit', { 
+    await res.render('edit', { 
     codigo: codigod,
     nome: nomed,
     carga: cargad,

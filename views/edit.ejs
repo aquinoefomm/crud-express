@@ -13,33 +13,42 @@
     />
 </head>
 <body>
-    <div class="cadastro" style="width: 70%;">
-        
+    <%- include('navbar.ejs') %>
+    <div class="cadastro" style="width: 70%;">        
         <form action="/update" method="post" style="color: rgb(223, 219, 214);">
-            <h1 style="margin-left: 75px;">Editar Cadastro</h1>
+            <h1>Editar Cadastro</h1>
             <div class="form-group" style="width: 300px;">
               <label for="codigo">Código da Disciplina</label>
-              <input type="number" class="form-control" id="codigo" name="codigo" value="<%= codigo%>" >
+              <input type="number" class="form-control" id="codigo" name="codigo" value="<%= codigo%>" required autofocus>
             </div>
             <div class="form-group">
               <label for="nome">Nome da Discplina</label>
-              <input type="text" class="form-control" id="nome" name="nome" value="<%= nome%>">
+              <input type="text" class="form-control" id="nome" name="nome" value="<%= nome%>" required>
             </div>
             <div class="form-group">
                 <label for="carga">Carga horária</label>
-                <input type="number" class="form-control" id="carga" name="carga" value="<%= carga%>">
+                <input type="number" class="form-control" id="carga" name="carga" value="<%= carga%>" required>
               </div>
               <div class="form-group">
                 <label for="professor">Nome do professor</label>
                 <input type="text" class="form-control" id="professor" name="professor" value="<%= professor%>">
               </div>
-            <button style="margin-top: 10px;" type="submit" class="btn btn-secondary">Editar</button>
+            <button style="margin-top: 10px;" type="submit" class="btn btn-secondary" onclick="clicked(event)">Editar</button>
           </form>
     </div>
+    <script>
+      function clicked(e)
+      {
+          if(!confirm('Deseja salvar as alterações?')) {
+              e.preventDefault();
+          }
+      }
+    </script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+    <%- include('footer.ejs') %>
 </body>
 </html>
