@@ -8,11 +8,11 @@ env.config()
 
 // Database configuration. DB_PASSWORD to be set on environmental variables
 const db = new pg.Client({
-    user: "postgres",
-    host: "localhost",
+    user: process.env.DB_USER,
+    host: process.env.DB_HOST,
     database: process.env.DB_NAME,
     password: process.env.DB_PASSWORD,
-    port: 5432,
+    port: process.env.DB_PORT,
 });
 
 
