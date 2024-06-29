@@ -2,15 +2,20 @@ import express from "express";
 import bodyParser from "body-parser";
 import pg from "pg";
 import bcrypt from "bcrypt";
+import env from "dotenv";
+
+env.config()
 
 // Database configuration. DB_PASSWORD to be set on environmental variables
 const db = new pg.Client({
     user: "postgres",
     host: "localhost",
-    database: DB_NAME,
-    password: DB_PASSWORD,
+    database: process.env.DB_NAME,
+    password: process.env.DB_PASSWORD,
     port: 5432,
 });
+
+
 
 const app = express();
 const port = 3000;
