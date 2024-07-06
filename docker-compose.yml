@@ -11,7 +11,7 @@ services:
     depends_on:
       - db
     environment:
-      - DATABASE_URL=postgres://postgres:password@db:5432/mydatabase
+      - DATABASE_URL=postgres://postgres:password@db:5432/DB_NAME
 
   db:
     container_name: postgres-db

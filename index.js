@@ -109,13 +109,6 @@ app.post('/signup', async (req, res) => {
 
 // Home page. Query to update records when home page is rendered. 
 app.get('/index', (req, res) => {
-//     db.query("SELECT * FROM college_courses", (err, res) => {
-//     if (err) {
-//         console.error("Error executing query", err.stack);
-//     } else {
-//         courses = res.rows;
-//     }
-// });
     res.render('index', {user: ""});
 });
 
