@@ -72,3 +72,33 @@ th, td {
 .footer {
     color: whitesmoke;
 }
+
+.social-icons {
+    display: flex;
+    justify-content: center; /* Centraliza os ícones horizontalmente */
+    gap: 20px; /* Espaçamento entre os ícones */
+    margin-top: 20px; /* Margem superior */
+  }
+  
+  .social-icons a {
+    color: white; /* Cor dos ícones */
+    text-decoration: none; /* Remove sublinhado dos links */
+    transition: color 0.3s ease; /* Transição suave de cor */
+  }
+  
+  .social-icons a:hover {
+    color: grey; /* Cor dos ícones ao passar o mouse */
+  }
+  .social-container{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footer-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    width: 100%;
+  }
