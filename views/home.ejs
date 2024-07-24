@@ -10,7 +10,11 @@
 <body>
     <div class="cadastro">
         <h1>Welcome to the IT career manager!</h1>
+        <% if(error) { %>
+            <h2 id="login-error">Please login in to access records page</h2>
+        <% }%>
         <div class="caixa-botoes">
+            
             <input class="botao" type="button" onclick="location.href='login';" value="Login"  style="margin-top: 5px;"/>
             <input class="botao" type="button" onclick="location.href='signup';" value="Sign up" />
         </div>

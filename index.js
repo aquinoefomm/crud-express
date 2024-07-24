@@ -15,7 +15,8 @@ const db = new pg.Client({
     port: process.env.DB_PORT,
 });
 
-
+let isLoggedIn = false;
+let erro = ""
 
 const app = express();
 const port = 3000;
@@ -26,7 +27,7 @@ db.connect();
 
 // Query database to fetch records
 let courses = {};
-db.query("SELECT * FROM college_courses", (err, res) => {
+db.query("SELECT * FROM college_courses ORDER BY nomed", (err, res) => {
     if (err) {
         console.error("Error executing query", err.stack);
     } else {
@@ -44,7 +45,10 @@ app.set('view engine', 'ejs');
 
 // Login page
 app.get('/', (req, res) => {
-    res.render('home.ejs', {});
+    res.render('home.ejs', {error: erro});
+    setInterval(() =>{
+        erro = ""
+    }, 3000)
 });
 
 app.get('/login', (req, res) => {
@@ -67,12 +71,13 @@ app.post('/login', async (req, res) => {
                 if (err){
                     console.log(err)
                 } else if (hash == result.rows[0].password){
+                   
                     res.render("index.ejs", { user: "" })
                 } else {
                     res.render("login.ejs", { error: "Invalid user or password" });
                 }
             });
-            
+            isLoggedIn = true;
         } else {
             res.render('login.ejs', { error: "Invalid user or password"});
         }
@@ -114,7 +119,13 @@ app.get('/index', (req, res) => {
 
 // Records page get.
 app.get('/registros', (req, res) => {
-    res.render('registros', { data: courses });
+    if (isLoggedIn == true) {
+        res.render('registros', { data: courses});
+    } else {
+        erro = "Please login!"
+        res.redirect('/'); 
+    }
+    
 });
 
 // Render form for creating new record.
@@ -166,7 +177,7 @@ app.post('/delete', (req, res) => {
   let cod = Number(req.body.codigod);
   db.query(`DELETE FROM college_courses WHERE codigod = ${cod}`);
   db.query('COMMIT');
-  res.redirect('/');
+   res.json("");
 })
 
 // Start server.

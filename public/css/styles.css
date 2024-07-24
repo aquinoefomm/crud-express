@@ -102,3 +102,8 @@ th, td {
     color: white;
     width: 100%;
   }
+
+  #login-error{
+    color: red;
+    font-weight: bold;
+  }
